@@ -1,0 +1,4 @@
+define service ZUI_AC_SESSION {
+  expose ZC_AC_SESSIONTP as Session;
+  expose ZC_AC_SPEAKERTP as Speaker;
+}

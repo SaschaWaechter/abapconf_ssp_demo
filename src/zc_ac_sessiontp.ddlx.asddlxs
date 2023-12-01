@@ -1,0 +1,168 @@
+@Metadata.layer: #CUSTOMER
+@UI: {
+  headerInfo: {
+    typeName: 'Session',
+    typeNamePlural: 'Sessions',
+    typeImageUrl: 'sap-icon://create-session',
+    title: {
+      type: #STANDARD,
+      label: 'Session',
+      value: 'Title'
+    }
+  },
+  presentationVariant: [ {
+    sortOrder: [ {
+      by: 'SessionUUID',
+      direction: #DESC
+    } ],
+    visualizations: [ {
+      type: #AS_LINEITEM
+    } ]
+  } ]
+}
+annotate view ZC_AC_SESSIONTP with
+{
+
+  @UI.facet: [ {
+    id: 'idCollection',
+    type: #COLLECTION,
+    label: 'Session',
+    position: 10
+  },
+  {
+    id: 'idIdentification',
+    parentId: 'idCollection',
+    type: #IDENTIFICATION_REFERENCE,
+    label: 'General Information',
+    position: 10
+  },
+  {
+    id: 'idLineitem',
+    type: #LINEITEM_REFERENCE,
+    label: 'Speaker',
+    position: 20 ,
+    targetElement: '_Speaker'
+  } ]
+  @UI.hidden: true
+  SessionUUID;
+
+  @UI.lineItem: [ {
+    position: 20 ,
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 20
+  } ]
+  @UI.selectionField: [ {
+    position: 10
+  } ]
+  Title;
+
+  @UI.lineItem: [ {
+    position: 30 ,
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 30
+  } ]
+  @Consumption.valueHelpDefinition: [
+     {
+       entity: { name: 'ZI_AC_LANGUAGE_VH', element: 'Language' }
+     }
+  ]
+  Language;
+
+  @UI.lineItem: [ {
+    position: 40 ,
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 40
+  } ]
+  @UI.multiLineText: true
+  Abstract;
+
+  @UI.lineItem: [ {
+    position: 50 ,
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 50
+  } ]
+  @Consumption.valueHelpDefinition: [
+    {
+      entity: { name: 'ZI_AC_DURATION_VH', element: 'Duration' }
+    }
+  ]
+  Duration;
+
+  @UI.lineItem: [ {
+    position: 60 ,
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 60
+  } ]
+  @UI.selectionField: [ {
+  position: 20
+  } ]
+  @Consumption.valueHelpDefinition: [
+      {
+        entity: { name: 'ZI_AC_FOCUS_AREA_VH', element: 'FocusArea' }
+      }
+   ]
+  FocusArea;
+
+  @UI.lineItem: [ {
+    position: 70 ,
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 70
+  } ]
+  @UI.selectionField: [ {
+    position: 30
+  } ]
+  @Consumption.valueHelpDefinition: [
+    {
+      entity: { name: 'ZI_AC_SESSION_LEVEL_VH', element: 'SessionLevel' }
+    }
+  ]
+  SessionLevel;
+
+  @UI.lineItem: [ {
+    position: 80 ,
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 80
+  } ]
+  Mail;
+
+  @UI.lineItem: [ {
+    position: 90 ,
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 90
+  } ]
+  @UI.selectionField: [ {
+    position: 40
+  } ]
+  Accepted;
+
+  @UI.hidden: true
+  CreatedAt;
+
+  @UI.hidden: true
+  CreatedBy;
+
+  @UI.hidden: true
+  LastChangedBy;
+
+  @UI.hidden: true
+  LastChangedAt;
+
+  @UI.hidden: true
+  LocalLastChangedAt;
+}

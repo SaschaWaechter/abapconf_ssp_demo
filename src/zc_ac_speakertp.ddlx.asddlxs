@@ -1,0 +1,115 @@
+@Metadata.layer: #CUSTOMER
+@UI: {
+  headerInfo: {
+    typeName: 'Speaker',
+    typeNamePlural: 'Speakers',
+    title: {
+      type: #STANDARD,
+      label: 'Speaker',
+      value: 'SpeakerUUID'
+    }
+  },
+  presentationVariant: [ {
+    sortOrder: [ {
+      by: 'SpeakerUUID',
+      direction: #DESC
+    } ],
+    visualizations: [ {
+      type: #AS_LINEITEM
+    } ]
+  } ]
+}
+annotate view ZC_AC_SPEAKERTP with
+{
+  @UI.facet: [ {
+    id: 'idSpeaker',
+    purpose: #STANDARD,
+    type: #IDENTIFICATION_REFERENCE,
+    label: 'Speaker',
+    position: 10
+  } ]
+  @UI.hidden: true
+  SpeakerUUID;
+
+  @UI.hidden: true
+  ParentUUID;
+
+  @UI.lineItem: [ {
+    position: 30 ,
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 30
+  } ]
+  SpeakerName;
+
+  @UI.lineItem: [ {
+    position: 40 ,
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 40
+  } ]
+  SpeakerShortBio;
+
+  @UI.lineItem: [ {
+    url: 'SpeakerProfile', //Target, when pressing the text
+    type: #WITH_URL,
+    position: 50 ,
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 50
+  } ]
+  SpeakerProfile;
+
+  @UI.lineItem: [ {
+    position: 60 ,
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 60
+  } ]
+  SpeakerJobDescr;
+
+  @UI.lineItem: [ {
+    position: 70 ,
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 70
+  } ]
+  SpeakerEmployer;
+
+  @UI.lineItem: [ {
+    url: 'SpeakerWebpage', 
+    type: #WITH_URL,
+    position: 80 ,
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 80
+  } ]
+  SpeakerWebpage;
+
+  @UI.lineItem: [ {
+    position: 90 ,
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 90
+  } ]
+  Socialmed;
+
+  @UI.lineItem: [ {
+    position: 100 ,
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 100
+  } ]
+  Picture;
+
+  @UI.hidden: true
+  LocalLastChangedAt;
+}

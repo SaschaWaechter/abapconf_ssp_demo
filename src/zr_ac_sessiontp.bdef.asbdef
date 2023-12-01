@@ -1,0 +1,86 @@
+managed;
+strict ( 2 );
+
+define behavior for ZR_AC_SESSIONTP alias Session
+implementation in class ZBP_AC_R_SESSIONTP unique
+persistent table ZZT_AC_SESSION
+etag master LocalLastChangedAt
+lock master
+authorization master( global )
+
+{
+  field ( readonly )
+   CreatedAt,
+   CreatedBy,
+   LastChangedBy,
+   LocalLastChangedAt,
+   Accepted;
+
+  field ( numbering : managed )
+   SessionUUID;
+
+
+  create;
+  update;
+  delete;
+
+  mapping for ZZT_AC_SESSION
+  {
+    SessionUUID = SESSION_UUID;
+    Title = TITLE;
+    Language = LANGUAGE;
+    Abstract = ABSTRACT;
+    Duration = DURATION;
+    FocusArea = FOCUS_AREA;
+    SessionLevel = SESSION_LEVEL;
+    Mail = MAIL;
+    Accepted = ACCEPTED;
+    CreatedAt = CREATED_AT;
+    CreatedBy = CREATED_BY;
+    LastChangedBy = LAST_CHANGED_BY;
+    LastChangedAt = LAST_CHANGED_AT;
+    LocalLastChangedAt = LOCAL_LAST_CHANGED_AT;
+  }
+
+  association _Speaker { create; }
+
+  determination CalculateSessionUUID on save { create; }
+}
+
+define behavior for ZR_AC_SPEAKERTP alias Speaker
+implementation in class ZBP_AC_R_SPEAKERTP unique
+persistent table ZZT_AC_SPEAKER
+etag master LocalLastChangedAt
+lock dependent by _Session
+authorization dependent by _Session
+
+{
+  field ( readonly )
+   ParentUUID,
+   LocalLastChangedAt;
+
+  field ( numbering : managed )
+   SpeakerUUID;
+
+  update;
+  delete;
+
+  mapping for ZZT_AC_SPEAKER
+  {
+    SpeakerUUID = SPEAKER_UUID;
+    ParentUUID = PARENT_UUID;
+    SpeakerName = SPEAKER_NAME;
+    SpeakerShortBio = SPEAKER_SHORT_BIO;
+    SpeakerProfile = SPEAKER_PROFILE;
+    SpeakerJobDescr = SPEAKER_JOB_DESCR;
+    SpeakerEmployer = SPEAKER_EMPLOYER;
+    SpeakerWebpage = SPEAKER_WEBPAGE;
+    Socialmed = SOCIALMED;
+    Picture = PICTURE;
+    LocalLastChangedAt = LOCAL_LAST_CHANGED_AT;
+  }
+
+  association _Session;
+
+  determination CalculateSpeakerUUID on save { create; }
+}
