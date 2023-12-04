@@ -20,6 +20,7 @@
     } ]
   } ]
 }
+@UI.lineItem: [{criticality: 'CriticalityAccepted'}]
 annotate view ZC_AC_SESSIONTP with
 {
 
@@ -139,17 +140,23 @@ annotate view ZC_AC_SESSIONTP with
   } ]
   Mail;
 
-  @UI.lineItem: [ {
-    position: 90 ,
-    importance: #HIGH
-  } ]
+  @UI.lineItem: [{ position: 90,
+                   importance: #HIGH,
+                   criticality: 'CriticalityAccepted' },
+                 { type: #FOR_ACTION,
+                   dataAction: 'SetSessionAccepted' ,
+                   label: 'Accept Session'}]
   @UI.identification: [ {
     position: 90
   } ]
   @UI.selectionField: [ {
     position: 40
   } ]
+  @UI.textArrangement: #TEXT_ONLY
   Accepted;
+  
+  @UI.hidden: true
+  CriticalityAccepted;
 
   @UI.hidden: true
   CreatedAt;

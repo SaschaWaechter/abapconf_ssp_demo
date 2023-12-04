@@ -3,22 +3,35 @@ strict ( 2 );
 
 define behavior for ZR_AC_SESSIONTP alias Session
 implementation in class ZBP_AC_R_SESSIONTP unique
-persistent table ZZT_AC_SESSION
+persistent table zzt_ac_session
 etag master LocalLastChangedAt
 lock master
-authorization master( global )
+authorization master ( global )
 
 {
   field ( readonly )
-   CreatedAt,
-   CreatedBy,
-   LastChangedBy,
-   LocalLastChangedAt,
-   Accepted;
+  CreatedAt,
+  CreatedBy,
+  LastChangedBy,
+  LocalLastChangedAt,
+  Accepted;
+
+  field ( mandatory )
+  Title,
+  Language,
+  Abstract,
+  Duration,
+  FocusArea,
+  SessionLevel,
+  Mail;
 
   field ( numbering : managed )
-   SessionUUID;
+  SessionUUID;
 
+  validation validateMail on save { field Mail; create; update; }
+  validation validateMailEnding on save { field Mail; create; update; }
+
+  action SetSessionAccepted result [1] $self;
 
   create;
   update;
@@ -49,18 +62,24 @@ authorization master( global )
 
 define behavior for ZR_AC_SPEAKERTP alias Speaker
 implementation in class ZBP_AC_R_SPEAKERTP unique
-persistent table ZZT_AC_SPEAKER
+persistent table zzt_ac_speaker
 etag master LocalLastChangedAt
 lock dependent by _Session
 authorization dependent by _Session
 
 {
   field ( readonly )
-   ParentUUID,
-   LocalLastChangedAt;
+  ParentUUID,
+  LocalLastChangedAt;
+
+  field ( mandatory )
+  SpeakerName,
+  SpeakerShortBio,
+  SpeakerJobDescr,
+  SpeakerEmployer;
 
   field ( numbering : managed )
-   SpeakerUUID;
+  SpeakerUUID;
 
   update;
   delete;

@@ -9,6 +9,8 @@ use etag
   use update;
   use delete;
 
+  use action SetSessionAccepted;
+
   use association _Speaker { create; }
 }
 

@@ -8,6 +8,7 @@ define root view entity ZC_AC_SESSIONTP
   as projection on ZR_AC_SESSIONTP
 {
   key SessionUUID,
+  @Search.defaultSearchElement: true
   Title,
   Language,
   Abstract,
@@ -15,7 +16,10 @@ define root view entity ZC_AC_SESSIONTP
   FocusArea,
   SessionLevel,
   Mail,
+  @ObjectModel.text.element: ['AcceptedText']
   Accepted,
+  _AcceptedStatus.AcceptedText as AcceptedText,
+  CriticalityAccepted,
   CreatedAt,
   CreatedBy,
   LastChangedBy,

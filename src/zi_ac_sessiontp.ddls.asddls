@@ -5,19 +5,19 @@ define root view entity ZI_AC_SESSIONTP
   as projection on ZR_AC_SESSIONTP
 {
   key SessionUUID,
-  Title,
-  Language,
-  Abstract,
-  Duration,
-  FocusArea,
-  SessionLevel,
-  Mail,
-  Accepted,
-  CreatedAt,
-  CreatedBy,
-  LastChangedBy,
-  LastChangedAt,
-  LocalLastChangedAt,
-  _Speaker : redirected to composition child ZI_AC_SPEAKERTP
-  
+      Title,
+      Language,
+      Abstract,
+      Duration,
+      FocusArea,
+      SessionLevel,
+      Mail,
+      Accepted,
+      CreatedAt,
+      CreatedBy,
+      LastChangedBy,
+      LastChangedAt,
+      LocalLastChangedAt,
+      _Speaker : redirected to composition child ZI_AC_SPEAKERTP
+
 }
