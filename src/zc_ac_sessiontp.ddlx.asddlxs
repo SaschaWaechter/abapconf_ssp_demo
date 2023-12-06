@@ -18,7 +18,7 @@
     visualizations: [ {
       type: #AS_LINEITEM
     } ]
-  } ]
+  }]
 }
 @UI.lineItem: [{criticality: 'CriticalityAccepted'}]
 annotate view ZC_AC_SESSIONTP with
@@ -43,8 +43,23 @@ annotate view ZC_AC_SESSIONTP with
     label: 'Speaker',
     position: 20 ,
     targetElement: '_Speaker'
-  } ]
+  },
+  {
+    id: 'idHeader',
+    purpose: #HEADER,
+    type       : #FIELDGROUP_REFERENCE,
+    targetQualifier: 'HeaderData'
+  }]
   @UI.hidden: true
+  @UI.identification: [
+  {
+    importance: #HIGH,
+    label: 'Accept Session',
+    dataAction: 'SetSessionAccepted',
+    type: #FOR_ACTION,
+    position: 1 
+  }
+]
   SessionUUID;
 
   @UI.lineItem: [ {
@@ -112,6 +127,13 @@ annotate view ZC_AC_SESSIONTP with
         entity: { name: 'ZI_AC_FOCUS_AREA_VH', element: 'FocusArea' }
       }
    ]
+  @UI.fieldGroup: [
+    {
+      qualifier: 'HeaderData',
+      position: 20,
+      label: ''
+    }
+  ]
   FocusArea;
 
   @UI.lineItem: [ {
@@ -127,6 +149,13 @@ annotate view ZC_AC_SESSIONTP with
   @Consumption.valueHelpDefinition: [
     {
       entity: { name: 'ZI_AC_SESSION_LEVEL_VH', element: 'SessionLevel' }
+    }
+  ]
+  @UI.fieldGroup: [
+    {
+      qualifier: 'HeaderData',
+      position: 30,
+      label: ''
     }
   ]
   SessionLevel;
@@ -153,8 +182,16 @@ annotate view ZC_AC_SESSIONTP with
     position: 40
   } ]
   @UI.textArrangement: #TEXT_ONLY
+  @UI.fieldGroup: [
+    {
+      qualifier: 'HeaderData',
+      criticality: 'CriticalityAccepted',
+      position: 10,
+      label: ''
+    }
+  ]
   Accepted;
-  
+
   @UI.hidden: true
   CriticalityAccepted;
 

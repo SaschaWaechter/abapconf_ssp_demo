@@ -3,21 +3,26 @@ CLASS ltc_session DEFINITION DEFERRED FOR TESTING.
 "! Methods are private so you have to define a friendship to your testclass
 CLASS lhc_session DEFINITION INHERITING FROM cl_abap_behavior_handler FRIENDS ltc_session.
   PRIVATE SECTION.
-    METHODS:
-      get_global_authorizations FOR GLOBAL AUTHORIZATION
-        IMPORTING
-        REQUEST requested_authorizations FOR Session
-        RESULT result,
-      calculatesessionuuid FOR DETERMINE ON SAVE
-        IMPORTING
-          keys FOR  Session~CalculateSessionUUID ,
-      "! validate mailaddress if it's correct to prevent false entries or trash proposals
-      validateMail FOR VALIDATE ON SAVE
-        IMPORTING keys FOR Session~validateMail,
-      validateMailEnding FOR VALIDATE ON SAVE
-        IMPORTING keys FOR Session~validateMailEnding,
-      SetSessionAccepted FOR MODIFY
-        IMPORTING keys FOR ACTION Session~SetSessionAccepted RESULT result.
+    METHODS get_global_authorizations FOR GLOBAL AUTHORIZATION
+      IMPORTING
+              REQUEST requested_authorizations FOR Session
+              RESULT result.
+
+    METHODS calculatesessionuuid FOR DETERMINE ON SAVE
+      IMPORTING
+                keys FOR  Session~CalculateSessionUUID.
+
+    "! validate mailaddress if it's correct to prevent false entries or trash proposals
+    METHODS validateMail FOR VALIDATE ON SAVE
+      IMPORTING keys FOR Session~validateMail.
+
+    "! validate mailaddress if it's correct to prevent false entries or trash proposals
+    METHODS validateMailEnding FOR VALIDATE ON SAVE
+      IMPORTING keys FOR Session~validateMailEnding.
+
+    "! Check if session accepted works correct
+    METHODS SetSessionAccepted FOR MODIFY
+      IMPORTING keys FOR ACTION Session~SetSessionAccepted RESULT result.
 ENDCLASS.
 
 CLASS lhc_session IMPLEMENTATION.
@@ -109,19 +114,12 @@ CLASS lhc_session IMPLEMENTATION.
 
     "Send Mail to Speaker
     LOOP AT sessions INTO DATA(session).
-      DATA(mail_framework) = NEW zcl_ac_mail_framework(  ).
-      DATA(succesful) = mail_framework->sens_session_accepted(
-        EXPORTING
-          i_mail      = session-Mail
-          i_title     = session-title
-      ).
 
       result = VALUE #( BASE result
              ( %tky   = session-%tky
                %param = session ) ).
 
     ENDLOOP.
-
 
   ENDMETHOD.
 

@@ -3,16 +3,16 @@
  <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
   <asx:values>
    <VSEOCLASS>
-    <CLSNAME>ZBP_AC_R_SPEAKERTP</CLSNAME>
+    <CLSNAME>ZTC_AC_SESSION_ODATA</CLSNAME>
     <LANGU>E</LANGU>
-    <DESCRIPT>Behavior implementation</DESCRIPT>
-    <CATEGORY>06</CATEGORY>
+    <DESCRIPT>Integration Tests</DESCRIPT>
+    <CATEGORY>05</CATEGORY>
     <STATE>1</STATE>
     <CLSCCINCL>X</CLSCCINCL>
     <FIXPT>X</FIXPT>
     <UNICODE>X</UNICODE>
-    <CLSDEFINT>ZR_AC_SESSIONTP</CLSDEFINT>
-    <WITH_UNIT_TESTS>X</WITH_UNIT_TESTS>
+    <DURATION_TYPE>12</DURATION_TYPE>
+    <RISK_LEVEL>11</RISK_LEVEL>
    </VSEOCLASS>
   </asx:values>
  </asx:abap>

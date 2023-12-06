@@ -81,6 +81,8 @@ authorization dependent by _Session
   field ( numbering : managed )
   SpeakerUUID;
 
+  determination autoTwitterHandle on modify { field SpeakerWebpage; }
+
   update;
   delete;
 

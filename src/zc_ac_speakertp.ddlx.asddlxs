@@ -6,7 +6,7 @@
     title: {
       type: #STANDARD,
       label: 'Speaker',
-      value: 'SpeakerUUID'
+      value: 'SpeakerName'
     }
   },
   presentationVariant: [ {
@@ -27,6 +27,12 @@ annotate view ZC_AC_SPEAKERTP with
     type: #IDENTIFICATION_REFERENCE,
     label: 'Speaker',
     position: 10
+  },
+  {
+    id: 'idHeader',
+    purpose: #HEADER,
+    type       : #FIELDGROUP_REFERENCE,
+    targetQualifier: 'HeaderData'
   } ]
   @UI.hidden: true
   SpeakerUUID;
@@ -50,6 +56,13 @@ annotate view ZC_AC_SPEAKERTP with
   @UI.identification: [ {
     position: 40
   } ]
+  @UI.fieldGroup: [
+    {
+      qualifier: 'HeaderData',
+      position: 10,
+      label: ''
+    }
+  ]
   SpeakerShortBio;
 
   @UI.lineItem: [ {
@@ -70,6 +83,13 @@ annotate view ZC_AC_SPEAKERTP with
   @UI.identification: [ {
     position: 60
   } ]
+  @UI.fieldGroup: [
+    {
+      qualifier: 'HeaderData',
+      position: 20,
+      label: ''
+    }
+  ]
   SpeakerJobDescr;
 
   @UI.lineItem: [ {
@@ -79,10 +99,17 @@ annotate view ZC_AC_SPEAKERTP with
   @UI.identification: [ {
     position: 70
   } ]
+  @UI.fieldGroup: [
+  {
+    qualifier: 'HeaderData',
+    position: 30,
+    label: ''
+  }
+]
   SpeakerEmployer;
 
   @UI.lineItem: [ {
-    url: 'SpeakerWebpage', 
+    url: 'SpeakerWebpage',
     type: #WITH_URL,
     position: 80 ,
     importance: #HIGH
@@ -108,6 +135,7 @@ annotate view ZC_AC_SPEAKERTP with
   @UI.identification: [ {
     position: 100
   } ]
+  @UI.hidden: true
   Picture;
 
   @UI.hidden: true
